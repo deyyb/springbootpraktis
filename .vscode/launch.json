@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SeiyuuGameApplication<seiyuuGame>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.praktis.seiyuuGame.SeiyuuGameApplication",
+            "projectName": "seiyuuGame",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
