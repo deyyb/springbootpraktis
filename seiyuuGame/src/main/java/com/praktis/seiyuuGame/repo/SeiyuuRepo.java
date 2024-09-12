@@ -14,4 +14,7 @@ public interface SeiyuuRepo extends JpaRepository<Seiyuu, Integer> {
 
     @Query("SELECT s FROM Seiyuu s WHERE s.seiyuuName LIKE %:seiyuuName%")
     List<Seiyuu> findBySeiyuuName(@Param("seiyuuName") String seiyuuName);
+
+    // @Query("SELECT c FROM Character c WHERE c.seiyuuId = :seiyuuId")
+    // List<Character> findRolesBySeiyuuId(@Param("seiyuuId") int seiyuuId);
 }

@@ -8,9 +8,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Seiyuu {
+public class Characters {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int characterId;
+    private String characterName;
     private int seiyuuId;
-    private String seiyuuName;
 }

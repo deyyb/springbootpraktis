@@ -40,4 +40,10 @@ public class SeiyuuController {
         log.info(seiyuuName+ "'s page requested!");
         return seiyuuService.searchSeiyuuByName(seiyuuName);
     }
+
+    @GetMapping("/roles/{seiyuuId}")
+    public String getSeiyuuRolesById(@PathVariable int seiyuuId){
+        log.info(seiyuuId+ "'s roles page requested!");
+        return seiyuuService.getSeiyuuRolesById(seiyuuId);
+    }
 }
