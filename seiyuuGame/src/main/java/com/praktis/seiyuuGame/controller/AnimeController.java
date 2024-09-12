@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.praktis.seiyuuGame.entity.Anime;
 import com.praktis.seiyuuGame.service.AnimeService;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @RestController
@@ -33,13 +31,13 @@ public class AnimeController {
     }
 
     @GetMapping("/id/{animeRank}")
-    public Optional<Anime> getMethodName(@PathVariable int animeRank) {
+    public Optional<Anime> getAnimeById(@PathVariable int animeRank) {
         log.info(animeRank+ "'s Page Requested!");
         return animeService.getAnimeById(animeRank);
     }
     
     @GetMapping("/search/{animeName}")
-    public List<Anime> getMethodName(@PathVariable String animeName) {
+    public List<Anime> searchAnimeByName(@PathVariable String animeName) {
         log.info(animeName+"'s page Requested!");
         return animeService.searchByAnimeName(animeName);
     }
