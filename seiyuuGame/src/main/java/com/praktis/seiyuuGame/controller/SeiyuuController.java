@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.praktis.seiyuuGame.entity.Seiyuu;
@@ -23,10 +24,10 @@ public class SeiyuuController {
 
     public static final Logger log = LoggerFactory.getLogger(SeiyuuController.class);
     
-    @GetMapping("/allSeiyuu")
-    public List<Seiyuu> getAllSeiyuu(){
+    @GetMapping("/allSeiyuu/{pageNumber}")
+    public List<Seiyuu> getAllSeiyuu( @PathVariable int pageNumber ){
         log.info("All Seiyuus page requested!");
-        return seiyuuService.getAllSeiyuu();
+        return seiyuuService.getAllSeiyuu(pageNumber);
     }
 
     @GetMapping("/id/{seiyuuId}")

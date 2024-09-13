@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.praktis.seiyuuGame.entity.Seiyuu;
@@ -24,9 +26,11 @@ public class SeiyuuService {
 
     public static final Logger log = LoggerFactory.getLogger(SeiyuuService.class);
 
-    public List<Seiyuu> getAllSeiyuu() {
+    public List<Seiyuu> getAllSeiyuu(int pageNumber) {
         log.info("All Seiyuus returned!");
-        return seiyuuRepo.findAll();
+        PageRequest pageable = PageRequest.of(pageNumber, 10);
+        Page<Seiyuu> pageResult = seiyuuRepo.findAll(pageable);
+        return pageResult.getContent();
     }
 
     public Optional<Seiyuu> getSeiyuuById(int seiyuuId) {
