@@ -14,6 +14,7 @@ public class AnimeCharacterSeiyuu {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int acsId;
     private int animeId;
+    private String animeName;
     private int characterId;
     private String characterName;
     private int seiyuuId;

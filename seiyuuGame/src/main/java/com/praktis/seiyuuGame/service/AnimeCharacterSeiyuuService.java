@@ -1,5 +1,6 @@
 package com.praktis.seiyuuGame.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,6 +22,19 @@ public class AnimeCharacterSeiyuuService {
     public List<AnimeCharacterSeiyuu> getACSById(int animeId) {
         log.info(animeId+ "'s page returned");
         return animeCharacterSeiyuuRepo.findByAnimeId(animeId);
+    }
+
+    public int getSeiyuuTotalRoles(int seiyuuId) {
+        List<AnimeCharacterSeiyuu> characterList = animeCharacterSeiyuuRepo.findCharactersBySeiyuuId(seiyuuId);
+        log.info(seiyuuId+"'s Total roles are"+ characterList.size());
+        return characterList.size();
+    }
+
+    public List<AnimeCharacterSeiyuu> getThreeRoles(int seiyuuId) {
+        List<AnimeCharacterSeiyuu> characterList = animeCharacterSeiyuuRepo.findCharactersBySeiyuuId(seiyuuId);
+        Collections.shuffle(characterList);
+        characterList = characterList.subList(0, 3);
+        return characterList;
     }
     
 }

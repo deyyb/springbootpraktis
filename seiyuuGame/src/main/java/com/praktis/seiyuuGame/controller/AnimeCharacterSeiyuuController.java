@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
+
+
 @RestController
 @RequestMapping("/acs")
 public class AnimeCharacterSeiyuuController {
@@ -30,5 +32,14 @@ public class AnimeCharacterSeiyuuController {
         return animeCharacterSeiyuuService.getACSById(animeId);
     }
     
-
+    @GetMapping("/seiyuuTotalRoles/{seiyuuId}")
+    public int getTotalRolesBySeiyuuId(@PathVariable int seiyuuId) {
+        return animeCharacterSeiyuuService.getSeiyuuTotalRoles(seiyuuId);
+    }
+    
+    @GetMapping("/rand/{seiyuuId}")
+    public List<AnimeCharacterSeiyuu> getThreeRandomRoles(@PathVariable int seiyuuId) {
+        return animeCharacterSeiyuuService.getThreeRoles(seiyuuId);
+    }
+    
 }

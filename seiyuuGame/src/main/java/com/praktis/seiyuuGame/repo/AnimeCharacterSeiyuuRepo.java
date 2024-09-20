@@ -15,4 +15,6 @@ public interface AnimeCharacterSeiyuuRepo extends JpaRepository<AnimeCharacterSe
     @Query("SELECT a FROM AnimeCharacterSeiyuu a WHERE a.animeId = :animeId")
     List<AnimeCharacterSeiyuu> findByAnimeId(@Param("animeId") int animeId);
     
+    @Query("SELECT a FROM AnimeCharacterSeiyuu a WHERE a.seiyuuId = :seiyuuId")
+    List<AnimeCharacterSeiyuu> findCharactersBySeiyuuId(@Param("seiyuuId") int seiyuuId);
 }
