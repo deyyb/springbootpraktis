@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.praktis.seiyuuGame.entity.AnimeCharacterSeiyuu;
+
 import java.util.List;
 
 
@@ -17,4 +18,7 @@ public interface AnimeCharacterSeiyuuRepo extends JpaRepository<AnimeCharacterSe
     
     @Query("SELECT a FROM AnimeCharacterSeiyuu a WHERE a.seiyuuId = :seiyuuId")
     List<AnimeCharacterSeiyuu> findCharactersBySeiyuuId(@Param("seiyuuId") int seiyuuId);
+
+    @Query("SELECT a.seiyuuId, a.seiyuuName, COUNT(a.characterId) FROM AnimeCharacterSeiyuu a GROUP BY a.seiyuuId, a.seiyuuName")
+    List<Object[]> findEachSeiyuuTotal();
 }

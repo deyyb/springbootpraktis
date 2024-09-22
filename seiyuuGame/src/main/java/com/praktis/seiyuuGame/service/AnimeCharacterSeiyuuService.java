@@ -1,5 +1,6 @@
 package com.praktis.seiyuuGame.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.praktis.seiyuuGame.entity.AnimeCharacterSeiyuu;
+import com.praktis.seiyuuGame.entity.SeiyuuTotalRoles;
 import com.praktis.seiyuuGame.repo.AnimeCharacterSeiyuuRepo;
 
 @Service
@@ -35,6 +37,40 @@ public class AnimeCharacterSeiyuuService {
         Collections.shuffle(characterList);
         characterList = characterList.subList(0, 3);
         return characterList;
+    }
+
+    // public List<SeiyuuTotalRoles> getSeiyuuAndTotalRolesPairs() {
+    //     List<AnimeCharacterSeiyuu> distinctList = animeCharacterSeiyuuRepo.findDistinctSeiyuu();
+    //     List<SeiyuuTotalRoles> newlist = new ArrayList<>();
+    //     for (AnimeCharacterSeiyuu i: distinctList) {
+    //         int totalRoles = getSeiyuuTotalRoles(i.getSeiyuuId());
+    //         SeiyuuTotalRoles s = new SeiyuuTotalRoles();
+    //         s.setSeiyuuId(i.getSeiyuuId());
+    //         s.setSeiyuuName(i.getSeiyuuName());
+    //         s.setTotalRoles(totalRoles);
+    //         newlist.add(s);
+    //     }
+    //     return newlist;
+    // }
+
+    public List<SeiyuuTotalRoles> getSeiyuuAndTotalRolesPairs() {
+        List<Object[]> results = animeCharacterSeiyuuRepo.findEachSeiyuuTotal();
+        List<SeiyuuTotalRoles> newlist = new ArrayList<>();
+
+        for (Object[] result : results) {
+        int seiyuuId = ((Number) result[0]).intValue();        
+        String seiyuuName = (String) result[1];  
+        int totalRoles = ((Number) result[2]).intValue();       
+        
+        SeiyuuTotalRoles s = new SeiyuuTotalRoles();
+        s.setSeiyuuId(seiyuuId);
+        s.setSeiyuuName(seiyuuName);
+        s.setTotalRoles(totalRoles); 
+        newlist.add(s);
+    }
+    
+    return newlist;
+
     }
     
 }

@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.praktis.seiyuuGame.entity.AnimeCharacterSeiyuu;
+import com.praktis.seiyuuGame.entity.SeiyuuTotalRoles;
 import com.praktis.seiyuuGame.service.AnimeCharacterSeiyuuService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -41,5 +43,11 @@ public class AnimeCharacterSeiyuuController {
     public List<AnimeCharacterSeiyuu> getThreeRandomRoles(@PathVariable int seiyuuId) {
         return animeCharacterSeiyuuService.getThreeRoles(seiyuuId);
     }
+
+    @GetMapping("/seiyuu_total")
+    public List<SeiyuuTotalRoles> getSeiyuuAndTotal() {
+        return animeCharacterSeiyuuService.getSeiyuuAndTotalRolesPairs();
+    }
+    
     
 }
