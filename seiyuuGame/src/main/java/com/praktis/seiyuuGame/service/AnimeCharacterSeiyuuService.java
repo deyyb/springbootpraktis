@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.praktis.seiyuuGame.PaginationUtil;
 import com.praktis.seiyuuGame.entity.AnimeCharacterSeiyuu;
 import com.praktis.seiyuuGame.entity.SeiyuuTotalRoles;
 import com.praktis.seiyuuGame.repo.AnimeCharacterSeiyuuRepo;
@@ -18,6 +19,9 @@ public class AnimeCharacterSeiyuuService {
 
     @Autowired
     AnimeCharacterSeiyuuRepo animeCharacterSeiyuuRepo;
+
+    @Autowired
+    PaginationUtil paginationUtil;
 
     public static final Logger log = LoggerFactory.getLogger(AnimeCharacterSeiyuuService.class);
 
@@ -78,11 +82,21 @@ public class AnimeCharacterSeiyuuService {
         List<SeiyuuTotalRoles> newlist = new ArrayList<>();
         for (SeiyuuTotalRoles seiyuu: list) {
             if (seiyuu.getSeiyuuName().toLowerCase().contains(seiyuuName.toLowerCase())){
-                log.info(seiyuu.getSeiyuuName());
+                // log.info(seiyuu.getSeiyuuName());
                 newlist.add(seiyuu);
             }
         }
         return newlist;
+    }
+
+    public List<SeiyuuTotalRoles> getSeiyuuAndTotalRolesPairsPages(int pageNumber) {
+        List<List<SeiyuuTotalRoles>> pagedList = PaginationUtil.getPages(getSeiyuuAndTotalRolesPairs(), 10);
+        return pagedList.get(pageNumber);
+    }
+
+    public List<SeiyuuTotalRoles> getSpecificSeiyuuAndTotalRolesPairsPages(String seiyuuName, int pageNumber) {
+        List<List<SeiyuuTotalRoles>> pagedList = PaginationUtil.getPages(getSpecificSeiyuuAndTotalRolesPairs(seiyuuName), 10);
+        return pagedList.get(pageNumber);
     }
     
 }

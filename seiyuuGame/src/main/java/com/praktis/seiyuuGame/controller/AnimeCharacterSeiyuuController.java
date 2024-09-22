@@ -44,14 +44,25 @@ public class AnimeCharacterSeiyuuController {
         return animeCharacterSeiyuuService.getThreeRoles(seiyuuId);
     }
 
-    @GetMapping("/seiyuu_total")
+    @GetMapping("/seiyuu_total/")
     public List<SeiyuuTotalRoles> getSeiyuuAndTotal() {
         return animeCharacterSeiyuuService.getSeiyuuAndTotalRolesPairs();
     }
     
     @GetMapping("/tseiyuu_total/{seiyuuName}")
     public List<SeiyuuTotalRoles> getSeiyuuAndTotalByName(@PathVariable String seiyuuName) {
-        log.info(seiyuuName);
+        // log.info(seiyuuName);
         return animeCharacterSeiyuuService.getSpecificSeiyuuAndTotalRolesPairs(seiyuuName);
+    }
+
+    @GetMapping("/seiyuu_total/{pageNumber}")
+    public List<SeiyuuTotalRoles> getSeiyuuAndTotalPages(@PathVariable int pageNumber) {
+        return animeCharacterSeiyuuService.getSeiyuuAndTotalRolesPairsPages(pageNumber);
+    }
+
+    @GetMapping("/tseiyuu_total/{seiyuuName}/{pageNumber}")
+    public List<SeiyuuTotalRoles> getSeiyuuAndTotalByNamePages(@PathVariable String seiyuuName, @PathVariable int pageNumber) {
+        // log.info(seiyuuName);
+        return animeCharacterSeiyuuService.getSpecificSeiyuuAndTotalRolesPairsPages(seiyuuName, pageNumber);
     }
 }
