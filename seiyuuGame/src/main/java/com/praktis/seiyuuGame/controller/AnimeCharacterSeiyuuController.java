@@ -49,5 +49,9 @@ public class AnimeCharacterSeiyuuController {
         return animeCharacterSeiyuuService.getSeiyuuAndTotalRolesPairs();
     }
     
-    
+    @GetMapping("/tseiyuu_total/{seiyuuName}")
+    public List<SeiyuuTotalRoles> getSeiyuuAndTotalByName(@PathVariable String seiyuuName) {
+        log.info(seiyuuName);
+        return animeCharacterSeiyuuService.getSpecificSeiyuuAndTotalRolesPairs(seiyuuName);
+    }
 }

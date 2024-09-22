@@ -72,5 +72,17 @@ public class AnimeCharacterSeiyuuService {
     return newlist;
 
     }
+
+    public List<SeiyuuTotalRoles> getSpecificSeiyuuAndTotalRolesPairs(String seiyuuName) {
+        List<SeiyuuTotalRoles> list = getSeiyuuAndTotalRolesPairs();
+        List<SeiyuuTotalRoles> newlist = new ArrayList<>();
+        for (SeiyuuTotalRoles seiyuu: list) {
+            if (seiyuu.getSeiyuuName().toLowerCase().contains(seiyuuName.toLowerCase())){
+                log.info(seiyuu.getSeiyuuName());
+                newlist.add(seiyuu);
+            }
+        }
+        return newlist;
+    }
     
 }
