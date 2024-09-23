@@ -39,8 +39,12 @@ public class AnimeCharacterSeiyuuService {
     public List<AnimeCharacterSeiyuu> getThreeRoles(int seiyuuId) {
         List<AnimeCharacterSeiyuu> characterList = animeCharacterSeiyuuRepo.findCharactersBySeiyuuId(seiyuuId);
         Collections.shuffle(characterList);
-        characterList = characterList.subList(0, 3);
-        return characterList;
+        if (characterList.size() < 3) {
+            return characterList;
+        } else {
+            characterList = characterList.subList(0, 3);
+            return characterList;
+        }
     }
 
     // public List<SeiyuuTotalRoles> getSeiyuuAndTotalRolesPairs() {
